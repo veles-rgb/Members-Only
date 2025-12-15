@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const { validationResult } = require("express-validator");
 
 function renderRegisterForm(req, res) {
+    if (req.user) return res.redirect("/");
+
     res.render("registerForm", {
         title: "Register Account",
         errors: []
@@ -10,6 +12,8 @@ function renderRegisterForm(req, res) {
 }
 
 async function postRegisterForm(req, res, next) {
+    if (req.user) return res.redirect("/");
+
     const errors = validationResult(req);
 
     const { fullname, username } = req.body;
