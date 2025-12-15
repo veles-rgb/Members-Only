@@ -11,5 +11,4 @@ async function renderIndex(req, res) {
 
 module.exports = {
     renderIndex,
-
 };
