@@ -16,10 +16,18 @@
                 </div>
                 <div>
                     <div>
-                        <%= message.username %>
+                        <% if (currentUser && currentUser.is_member) { %>
+                            <%= message.username %>
+                                <% } else { %>
+                                    ****
+                                    <% } %>
                     </div>
                     <div>
-                        <%= message.timestamp %>
+                        <% if (currentUser && currentUser.is_member) { %>
+                            <%= message.timestamp %>
+                                <% } else { %>
+                                    ****
+                                    <% } %>
                     </div>
                 </div>
             </div>
