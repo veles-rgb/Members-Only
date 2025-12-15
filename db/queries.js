@@ -30,7 +30,19 @@ async function postNewMessage(params) {
 
 }
 
+async function postRegister(name, username, passwordHash) {
+    await pool.query(
+        "INSERT INTO users (name, username, password_hash) VALUES ($1, $2, $3)",
+        [
+            name,
+            username,
+            passwordHash
+        ]
+    );
+}
+
 module.exports = {
     getAllMessages,
-    getMessageById
+    getMessageById,
+    postRegister
 };
