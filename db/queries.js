@@ -26,10 +26,6 @@ async function getMessageById(id) {
     return result.rows[0];
 }
 
-async function postNewMessage(params) {
-
-}
-
 async function postRegister(name, username, passwordHash) {
     await pool.query(
         "INSERT INTO users (name, username, password_hash) VALUES ($1, $2, $3)",
@@ -41,8 +37,24 @@ async function postRegister(name, username, passwordHash) {
     );
 }
 
+async function postJoinClub(id) {
+    await pool.query(
+        "UPDATE users SET is_member = true WHERE id = $1",
+        [id]
+    );
+}
+
+async function postNewMessage(id, title, message) {
+    await pool.query(
+        "INSERT INTO messages (title, message, user_id) VALUES ($2, $3, $1)",
+        [id, title, message]
+    );
+}
+
 module.exports = {
     getAllMessages,
     getMessageById,
-    postRegister
+    postRegister,
+    postJoinClub,
+    postNewMessage
 };
