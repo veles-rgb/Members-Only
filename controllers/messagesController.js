@@ -55,8 +55,23 @@ async function postNewMessage(req, res, next) {
     }
 }
 
+async function postDeleteMessage(req, res, next) {
+    if (!req.user) return res.redirect("/login");
+    if (!req.user.is_admin) return res.redirect("/");
+
+    try {
+        const id = req.body.id;
+        await db.postDeleteMessage(id);
+        return res.redirect("/");
+    } catch (error) {
+        return next(error);
+    }
+}
+
+
 module.exports = {
     renderMessageId,
     renderMessageForm,
-    postNewMessage
+    postNewMessage,
+    postDeleteMessage
 };
