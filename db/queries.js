@@ -51,10 +51,18 @@ async function postNewMessage(id, title, message) {
     );
 }
 
+async function postDeleteMessage(id) {
+    await pool.query(
+        "DELETE FROM messages WHERE id = $1",
+        [id]
+    );
+}
+
 module.exports = {
     getAllMessages,
     getMessageById,
     postRegister,
     postJoinClub,
-    postNewMessage
+    postNewMessage,
+    postDeleteMessage
 };
