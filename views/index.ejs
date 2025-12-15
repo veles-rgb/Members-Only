@@ -5,13 +5,35 @@
 </head>
 
 <body>
-    <div id="index-container">
-        <h1>Home Page</h1>
-        <% if (currentUser) { %>
-            <p>Welcome <%= currentUser.username %>
-            </p>
-            <% } else { %>
-                <p>Please <a href="/login">Login</a></p>
-                <% } %>
-    </div>
+    <%- include("partials/header") %>
+        <div id="index-container">
+            <h1>Home Page</h1>
+            <% if (currentUser) { %>
+                <p>Welcome <%= currentUser.username %>
+                </p>
+                <% } else { %>
+                    <p>Please <a href="/login">Login</a></p>
+                    <% } %>
+                        <div id="messages-container">
+                            <% messages.forEach(message=> { %>
+                                <div>
+                                    <div>
+                                        <%= message.title %>
+                                    </div>
+                                    <div>
+                                        <%= message.message %>
+                                    </div>
+                                    <div>
+                                        <div>
+                                            <%= message.username %>
+                                        </div>
+                                        <div>
+                                            <%= message.timestamp %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <% }) %>
+                        </div>
+        </div>
 </body>
