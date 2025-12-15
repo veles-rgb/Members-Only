@@ -7,31 +7,32 @@
 </head>
 
 <body>
-    <h1>Register Form</h1>
-    <% if (errors && errors.length> 0) { %>
-        <ul>
-            <% errors.forEach(error=> { %>
-                <li>
-                    <%= error.msg %>
-                </li>
-                <% }) %>
-        </ul>
-        <% } %>
-            <form action="/register" method="POST">
-                <label for="fullname">Name</label>
-                <input type="text" name="fullname" id="fullname" required>
+    <%- include("partials/header") %>
+        <h1>Register Form</h1>
+        <% if (errors && errors.length> 0) { %>
+            <ul>
+                <% errors.forEach(error=> { %>
+                    <li>
+                        <%= error.msg %>
+                    </li>
+                    <% }) %>
+            </ul>
+            <% } %>
+                <form action="/register" method="POST">
+                    <label for="fullname">Name</label>
+                    <input type="text" name="fullname" id="fullname" required>
 
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" required>
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required>
 
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" required>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
 
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" required>
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" name="confirmPassword" id="confirmPassword" required>
 
-                <button type="submit">Register</button>
-            </form>
+                    <button type="submit">Register</button>
+                </form>
 </body>
 
 </html>

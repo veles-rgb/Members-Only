@@ -5,23 +5,24 @@
 </head>
 
 <body>
-    <div id="messageId-container">
-        <div class="messageId-item">
-            <div>
-                <%= message.title %>
-            </div>
-            <div>
-                <%= message.message %>
-            </div>
-            <div>
+    <%- include("partials/header") %>
+        <div id="messageId-container">
+            <div class="messageId-item">
                 <div>
-                    <%= message.username %>
+                    <%= message.title %>
                 </div>
                 <div>
-                    <%= message.timestamp %>
+                    <%= message.message %>
+                </div>
+                <div>
+                    <div>
+                        <%= message.username %>
+                    </div>
+                    <div>
+                        <%= message.timestamp %>
+                    </div>
                 </div>
             </div>
+            <button onclick="window.location.href='/'">Back</button>
         </div>
-        <button onclick="window.location.href='/'">Back</button>
-    </div>
 </body>
