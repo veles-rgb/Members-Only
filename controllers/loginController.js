@@ -1,17 +1,11 @@
-const db = require("../db/queries");
+const passport = require("passport");
 
 function renderLoginForm(req, res) {
-
     res.render("loginForm", {
-        title: "Login"
+        title: "Login",
     });
-}
-
-async function postLoginForm(req, res) {
-
 }
 
 module.exports = {
     renderLoginForm,
-    postLoginForm
 };
