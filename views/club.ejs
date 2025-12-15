@@ -5,5 +5,17 @@
 </head>
 
 <body>
-    <h1>Join The Club!</h1>
+    <div id="club-container">
+        <% if (currentUser && currentUser.is_member) { %>
+            <h1>You are already in the club, silly goose!</h1>
+            <% } else { %>
+                <h1>Join The Club!</h1>
+                <p>You are not a member, yet...</p>
+                <form action="/club" method="POST">
+                    <label for="clubcode">Enter the club code</label>
+                    <input type="text" name="clubcode" id="clubcode" required>
+                    <button type="submit">JOIN</button>
+                </form>
+                <% } %>
+    </div>
 </body>
