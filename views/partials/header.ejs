@@ -1,0 +1,21 @@
+<header>
+    <h1>Members Only</h1>
+    <div>
+        <% if (!currentUser) { %>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <% } else { %>
+                <% if (currentUser && !currentUser.is_member) { %>
+                    <a href="/">Home</a>
+                    <a href="/messages/new">New Post</a>
+                    <a href="/club">Become a Member</a>
+                    <a href="/logout">Logout</a>
+                    <% } else if (currentUser && currentUser.is_member) { %>
+                        <a href="/">Home</a>
+                        <a href="/messages/new">New Post</a>
+                        <a href="/logout">Logout</a>
+                        <% } %>
+                            <% } %>
+    </div>
+</header>
