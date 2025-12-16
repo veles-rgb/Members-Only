@@ -2,11 +2,31 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/skeleton.css">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
 <body>
     <%- include("partials/header") %>
-        <h1>
-            <%= title %>
-        </h1>
+        <div class="site-content">
+            <div class="notfound-page">
+                <div class="notfound-card">
+                    <div class="notfound-emoji" aria-hidden="true">🧭</div>
+
+                    <h1 class="notfound-title">
+                        <%= title %>
+                    </h1>
+                    <p class="notfound-subtitle">
+                        That page wandered off into the void.
+                    </p>
+
+                    <div class="notfound-actions">
+                        <button class="button-secondary" onclick="window.location.href='/'">Back Home</button>
+                        <button class="button-primary" onclick="window.history.back()">Go Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include("partials/footer") %>
 </body>

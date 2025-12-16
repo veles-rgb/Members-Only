@@ -1,18 +1,21 @@
-<head>
-    <Title>
-        <%= title %>
-    </Title>
-</head>
-
 <body>
     <%- include("partials/header") %>
-        <h1>Login</h1>
+        <div class="site-content">
+            <div class="auth-page">
+                <div class="auth-card">
+                    <h1 class="auth-title">Login</h1>
 
-        <form action="/login" method="POST">
-            <label for="username">Username</label>
-            <input id="username" name="username" placeholder="username" type="text" required />
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" required />
-            <button type="submit">Login</button>
-        </form>
+                    <form action="/login" method="POST">
+                        <label for="username">Username</label>
+                        <input id="username" name="username" placeholder="username" type="text" required />
+
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" required />
+
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include("partials/footer") %>
 </body>

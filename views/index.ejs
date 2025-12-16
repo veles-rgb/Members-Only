@@ -2,46 +2,55 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/skeleton.css">
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 
 <body>
     <%- include("partials/header") %>
-        <div id="index-container">
-            <% if (currentUser) { %>
-                <p>Welcome <%= currentUser.username %>
-                </p>
-                <% } else { %>
-                    <p>Please <a href="/login">Login</a></p>
-                    <% } %>
-                        <div id="messages-container">
-                            <% messages.forEach(message=> { %>
-                                <div class="messages-item">
-                                    <div>
-                                        <%= message.title %>
-                                    </div>
-                                    <div>
-                                        <%= message.message %>
-                                    </div>
-                                    <div>
+        <div class="site-content">
+            <div id="index-container">
+                <% if (currentUser) { %>
+                    <p>Welcome, <%= currentUser.username %>!
+                    </p>
+                    <% } else { %>
+                        <p>Please <a href="/login">Login</a> or <a href="/register">Register</a> to post messages.</p>
+                        <% } %>
+                            <div id="messages-container">
+                                <% messages.forEach(message=> { %>
+                                    <div class="messages-item">
                                         <div>
-                                            <% if (currentUser && currentUser.is_member) { %>
-                                                <%= message.username %>
-                                                    <% } else { %>
-                                                        ****
-                                                        <% } %>
+                                            <%= message.title %>
                                         </div>
                                         <div>
-                                            <% if (currentUser && currentUser.is_member) { %>
-                                                <%= message.timestamp %>
-                                                    <% } else { %>
-                                                        ****
-                                                        <% } %>
+                                            <%= message.message %>
                                         </div>
+                                        <div>
+                                            <div>
+                                                <% if (currentUser && currentUser.is_member) { %>
+                                                    <%= message.username %>
+                                                        <% } else { %>
+                                                            <div>Details hidden, <a href="/club">join the club</a>
+                                                                too see them!</div>
+                                                            <% } %>
+                                            </div>
+                                            <div>
+                                                <% if (currentUser && currentUser.is_member) { %>
+                                                    <%= message.timestamp %>
+                                                        <% } else { %>
+                                                            <div>
+                                                                Details hidden, <a href="/club">join the club</a>
+                                                                too see them!
+                                                            </div>
+                                                            <% } %>
+                                            </div>
+                                        </div>
+                                        <button onclick="window.location.href='/messages/<%=message.id%>'">View</button>
                                     </div>
-                                    <button onclick="window.location.href='/messages/<%=message.id%>'">View</button>
-                                </div>
-                                <br>
-                                <% }) %>
-                        </div>
+                                    <% }) %>
+                            </div>
+            </div>
         </div>
+        <%- include("partials/footer") %>
 </body>

@@ -1,22 +1,24 @@
-<head>
-    <title>
-        <%= title %>
-    </title>
-</head>
-
 <body>
     <%- include("partials/header") %>
-        <div id="club-container">
-            <% if (currentUser && currentUser.is_member) { %>
-                <h1>You are already in the club, silly goose!</h1>
-                <% } else { %>
-                    <h1>Join The Club!</h1>
-                    <p>You are not a member, yet...</p>
-                    <form action="/club" method="POST">
-                        <label for="clubcode">Enter the club code</label>
-                        <input type="text" name="clubcode" id="clubcode" required>
-                        <button type="submit">JOIN</button>
-                    </form>
-                    <% } %>
+        <div class="site-content">
+            <div class="auth-page">
+                <div class="auth-card club-card">
+                    <% if (currentUser && currentUser.is_member) { %>
+                        <h1 class="auth-title">You’re In 🎉</h1>
+                        <p class="club-message">You are already in the club, silly goose!</p>
+                        <% } else { %>
+                            <h1 class="auth-title">Join The Club</h1>
+                            <p class="club-message">You are not a member yet.</p>
+
+                            <form action="/club" method="POST">
+                                <label for="clubcode">Club Code</label>
+                                <input type="text" name="clubcode" id="clubcode" required>
+                                <button type="submit">Join</button>
+                            </form>
+                            <div>The code is "oneofus"</div>
+                            <% } %>
+                </div>
+            </div>
         </div>
+        <%- include("partials/footer") %>
 </body>

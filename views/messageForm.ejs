@@ -1,37 +1,36 @@
-<head>
-    <title>
-        <%= title %>
-    </title>
-</head>
-
 <body>
     <%- include("partials/header") %>
-        <div id="new-message-form-container">
-            <% if (currentUser) { %>
-                <h1>New Message</h1>
-                <p>Hello <%= currentUser.name %>, what do you have for us?</p>
+        <div class="site-content">
+            <div class="auth-page">
+                <div class="auth-card">
+                    <% if (currentUser) { %>
+                        <h1 class="auth-title">New Message</h1>
+                        <p class="auth-subtitle">Hello <%= currentUser.name %>, what do you have for us?</p>
 
-                <% if (errors && errors.length> 0) { %>
-                    <ul>
-                        <% errors.forEach(error=> { %>
-                            <li>
-                                <%= error.msg %>
-                            </li>
-                            <% }) %>
-                    </ul>
-                    <% } %>
-
-                        <form action="/messages/new" method="POST">
-                            <label for="title">Title</label>
-                            <input type="text" name="title" id="title">
-
-                            <label for="message">Message</label>
-                            <input type="text" name="message" id="message">
-
-                            <button type="submit">Submit</button>
-                        </form>
-                        <% } else { %>
-                            <p>Please <a href="/login">LOGIN</a></p>
+                        <% if (errors && errors.length> 0) { %>
+                            <ul class="auth-errors">
+                                <% errors.forEach(error=> { %>
+                                    <li>
+                                        <%= error.msg %>
+                                    </li>
+                                    <% }) %>
+                            </ul>
                             <% } %>
+
+                                <form action="/messages/new" method="POST">
+                                    <label for="title">Title</label>
+                                    <input type="text" name="title" id="title" required>
+
+                                    <label for="message">Message</label>
+                                    <textarea name="message" id="message" rows="6" required></textarea>
+
+                                    <button type="submit">Submit</button>
+                                </form>
+                                <% } else { %>
+                                    <p class="auth-redirect">Please <a href="/login">Login</a></p>
+                                    <% } %>
+                </div>
+            </div>
         </div>
+        <%- include("partials/footer") %>
 </body>
