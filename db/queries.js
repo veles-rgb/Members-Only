@@ -58,11 +58,20 @@ async function postDeleteMessage(id) {
     );
 }
 
+async function getAllUsers() {
+    const [rows] = await pool.query(
+        "SELECT * FROM users"
+    );
+
+    return rows;
+}
+
 module.exports = {
     getAllMessages,
     getMessageById,
     postRegister,
     postJoinClub,
     postNewMessage,
-    postDeleteMessage
+    postDeleteMessage,
+    getAllUsers
 };
