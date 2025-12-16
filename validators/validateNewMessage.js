@@ -9,7 +9,7 @@ const validateNewMessage = [
     body("message")
         .trim()
         .notEmpty().withMessage("Message cannot be empty.")
-        .isLength({ min: 1, max: 100 }).withMessage("Message must be between 1 & 2000."),
+        .isLength({ min: 1, max: 2000 }).withMessage("Message must be between 1 & 2000."),
 ];
 
 module.exports = validateNewMessage;
