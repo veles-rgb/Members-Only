@@ -1,22 +1,22 @@
 require("dotenv").config();
 const { Pool } = require("pg");
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const pool = new Pool({ connectionString: process.env.PROD_DB_URL });
 
 async function resetDb() {
-    const client = await pool.connect();
-    try {
-        const dbInfo = await client.query("SELECT current_database() AS db, current_schema() AS schema");
-        console.log("Connected to:", dbInfo.rows[0]);
+  const client = await pool.connect();
+  try {
+    const dbInfo = await client.query("SELECT current_database() AS db, current_schema() AS schema");
+    console.log("Connected to:", dbInfo.rows[0]);
 
-        await client.query("BEGIN");
+    await client.query("BEGIN");
 
-        // Drop
-        await client.query("DROP TABLE IF EXISTS public.messages CASCADE;");
-        await client.query("DROP TABLE IF EXISTS public.users CASCADE;");
+    // Drop
+    await client.query("DROP TABLE IF EXISTS public.messages CASCADE;");
+    await client.query("DROP TABLE IF EXISTS public.users CASCADE;");
 
-        // Recreate
-        await client.query(`
+    // Recreate
+    await client.query(`
       CREATE TABLE public.users (
         id BIGSERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL CHECK (length(name) >= 1),
@@ -28,7 +28,7 @@ async function resetDb() {
       );
     `);
 
-        await client.query(`
+    await client.query(`
       CREATE TABLE public.messages (
         id BIGSERIAL PRIMARY KEY,
         title VARCHAR(50) NOT NULL CHECK (length(title) >= 1),
@@ -38,18 +38,18 @@ async function resetDb() {
       );
     `);
 
-        await client.query("CREATE INDEX idx_messages_user_id ON public.messages(user_id);");
+    await client.query("CREATE INDEX idx_messages_user_id ON public.messages(user_id);");
 
-        await client.query("COMMIT");
-        console.log("✅ Reset complete.");
-    } catch (err) {
-        await client.query("ROLLBACK");
-        console.error("❌ Reset failed:", err.message);
-        throw err;
-    } finally {
-        client.release();
-        await pool.end();
-    }
+    await client.query("COMMIT");
+    console.log("✅ Reset complete.");
+  } catch (err) {
+    await client.query("ROLLBACK");
+    console.error("❌ Reset failed:", err.message);
+    throw err;
+  } finally {
+    client.release();
+    await pool.end();
+  }
 }
 
 resetDb();
