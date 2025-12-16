@@ -90,6 +90,11 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use((req, res, next) => {
+    res.locals.activePath = req.path;
+    next();
+});
+
 // Routes
 app.use("/", indexRouter);
 app.use("/messages", messagesRouter);
