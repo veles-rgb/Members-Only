@@ -101,7 +101,6 @@ app.use("/messages", messagesRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/club", clubRouter);
-app.use("/admin");
 app.get("/logout", (req, res, next) => {
     req.logout((err) => {
         if (err) {
