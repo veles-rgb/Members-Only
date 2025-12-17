@@ -81,7 +81,9 @@
                                         <% users.forEach(user=> { %>
                                             <tr class="admin-row">
                                                 <td class="admin-mono">
-                                                    <%= user.username %>
+                                                    <a href="/users/<%= user.id %>">
+                                                        <%= user.username %>
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <%= user.name %>
