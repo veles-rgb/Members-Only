@@ -7,22 +7,26 @@
             <a href="/login" class="<%= activePath.startsWith('/login') ? 'active' : '' %>">Login</a>
             <a href="/register" class="<%= activePath.startsWith('/register') ? 'active' : '' %>">Register</a>
 
-            <% } else { %>
+            <% } else if (currentUser.is_admin) { %>
+                <a href="/" class="<%= activePath === '/' ? 'active' : '' %>">Home</a>
+                <a href="/admin" class="<%= activePath.startsWith('/admin') ? 'active' : '' %>">Admin</a>
+                <a href="/messages/new" class="<%= activePath.startsWith('/messages/new') ? 'active' : '' %>">New
+                    Post</a>
+                <a href="/logout" class="<%= activePath.startsWith('/logout') ? 'active' : '' %>">Logout</a>
 
-                <% if (currentUser && !currentUser.is_member) { %>
+                <% } else if (currentUser.is_member) { %>
                     <a href="/" class="<%= activePath === '/' ? 'active' : '' %>">Home</a>
                     <a href="/messages/new" class="<%= activePath.startsWith('/messages/new') ? 'active' : '' %>">New
                         Post</a>
-                    <a href="/club" class="<%= activePath.startsWith('/club') ? 'active' : '' %>">Join?</a>
                     <a href="/logout" class="<%= activePath.startsWith('/logout') ? 'active' : '' %>">Logout</a>
 
-                    <% } else if (currentUser && currentUser.is_member) { %>
+                    <% } else { %>
                         <a href="/" class="<%= activePath === '/' ? 'active' : '' %>">Home</a>
                         <a href="/messages/new"
                             class="<%= activePath.startsWith('/messages/new') ? 'active' : '' %>">New Post</a>
+                        <a href="/club" class="<%= activePath.startsWith('/club') ? 'active' : '' %>">Join?</a>
                         <a href="/logout" class="<%= activePath.startsWith('/logout') ? 'active' : '' %>">Logout</a>
                         <% } %>
 
-                            <% } %>
     </div>
 </header>
