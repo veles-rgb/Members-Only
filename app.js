@@ -49,6 +49,9 @@ const messagesRouter = require("./routes/messagesRouter");
 const registerRouter = require("./routes/registerRouter");
 const loginRouter = require("./routes/loginRouter");
 const clubRouter = require("./routes/clubRouter");
+const adminRouter = require("./routes/adminRouter");
+const usersRouter = require("./routes/usersRouter");
+
 
 // Passport Local Strategy (bcrypt)
 passport.use(
@@ -101,6 +104,8 @@ app.use("/messages", messagesRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 app.use("/club", clubRouter);
+app.use("/admin", adminRouter);
+app.use("/users", usersRouter);
 app.get("/logout", (req, res, next) => {
     req.logout((err) => {
         if (err) {
