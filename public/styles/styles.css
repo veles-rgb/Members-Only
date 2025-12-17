@@ -30,6 +30,7 @@ body {
 
 body {
     background-color: var(--bg-main);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -41,6 +42,10 @@ body>header {
 body>footer {
     margin-top: auto;
     flex: 0 0 auto;
+}
+
+main {
+    flex: 1;
 }
 
 .site-layout {
