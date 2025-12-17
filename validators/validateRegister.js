@@ -11,6 +11,7 @@ const validateRegister = [
         .notEmpty().withMessage("Username cannot be empty.")
         .isLength({ min: 3, max: 50 }).withMessage("Username must be between 3 & 50 characters.")
         .matches(/^[a-zA-Z0-9_]+$/).withMessage("Username can only contain letters, numbers, and underscores.")
+        .isLowercase().withMessage("Username changed to lowercase. Please retype your passwords.")
         .toLowerCase(),
 
     body("password")

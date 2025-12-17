@@ -7,7 +7,8 @@ function renderRegisterForm(req, res) {
 
     res.render("registerForm", {
         title: "Register Account",
-        errors: []
+        errors: [],
+        values: { fullname: "", username: "" }
     });
 }
 
@@ -21,7 +22,11 @@ async function postRegisterForm(req, res, next) {
     if (!errors.isEmpty()) {
         return res.status(400).render("registerForm", {
             title: "Register Account",
-            errors: errors.array()
+            errors: errors.array(),
+            values: {
+                fullname,
+                username
+            }
         });
     }
 

@@ -26,10 +26,12 @@
 
                             <form action="/register" method="POST">
                                 <label for="fullname">Name</label>
-                                <input type="text" name="fullname" id="fullname" required>
+                                <input type="text" name="fullname" id="fullname" value="<%= values?.fullname ?? '' %>"
+                                    required>
 
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" required>
+                                <input type="text" name="username" id="username" value="<%= values?.username ?? '' %>"
+                                    required>
 
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" required>
