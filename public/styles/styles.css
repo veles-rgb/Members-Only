@@ -624,3 +624,422 @@ header h1 {
     background: var(--color-primary-hover);
     border-color: var(--color-primary-hover);
 }
+
+/* ADMIN PAGE STYLES */
+
+.admin-page {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.admin-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+}
+
+.admin-head {
+    margin-bottom: 1.6rem;
+}
+
+.admin-title {
+    margin: 0 0 0.4rem;
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.admin-subtitle {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+}
+
+.admin-controls {
+    margin: 1.4rem 0 1.6rem;
+    padding: 1.4rem;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    background: var(--bg-muted);
+}
+
+.admin-controls-row {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+.admin-field label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.admin-hidden-label {
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+}
+
+.admin-field input,
+.admin-field select {
+    width: 100%;
+    margin: 0;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+}
+
+.admin-field-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.admin-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+}
+
+.admin-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+.admin-table thead th {
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-secondary);
+    background: var(--bg-muted);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1.1rem 1rem;
+    white-space: nowrap;
+}
+
+.admin-table tbody td {
+    border-bottom: 1px solid var(--border-light);
+    padding: 1rem;
+    vertical-align: top;
+}
+
+.admin-row:hover td {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.admin-empty {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem 1rem;
+}
+
+.admin-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.admin-muted {
+    color: var(--text-light);
+}
+
+.admin-col-actions {
+    text-align: left;
+    width: 1%;
+}
+
+.admin-actions-cell {
+    min-width: 320px;
+}
+
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.admin-note {
+    margin-top: 0.6rem;
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.admin-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.admin-pill-yes {
+    background: rgba(22, 163, 74, 0.12);
+    border: 1px solid rgba(22, 163, 74, 0.35);
+    color: var(--color-success);
+}
+
+.admin-pill-no {
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    color: var(--color-danger);
+}
+
+.admin-btn {
+    height: 34px;
+    padding: 0 1.1rem;
+    border-radius: 8px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.admin-btn-primary {
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: #fff;
+}
+
+.admin-btn-primary:hover {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+}
+
+.admin-btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-dark);
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+.admin-btn-secondary:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+.admin-btn-danger {
+    background: var(--color-danger);
+    border: 1px solid var(--color-danger);
+    color: #fff;
+}
+
+.admin-btn-danger:hover {
+    opacity: 0.92;
+}
+
+.admin-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (max-width: 820px) {
+    .admin-controls-row {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-field-actions {
+        justify-content: flex-start;
+    }
+
+    .admin-actions-cell {
+        min-width: 260px;
+    }
+}
+
+/* USER PROFILE PAGE */
+.profile-page {
+    max-width: 1000px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
+}
+
+.profile-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 2rem;
+}
+
+.profile-head {
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 1.6rem;
+}
+
+.profile-title {
+    margin: 0;
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--text-primary);
+}
+
+.profile-subtitle {
+    margin: 0.3rem 0 1.4rem;
+    color: var(--text-secondary);
+    font-size: 1.6rem;
+}
+
+.profile-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.profile-meta-item {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+    padding: 0.6rem 0.9rem;
+    background: var(--bg-muted);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+}
+
+.profile-meta-label {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.profile-meta-value {
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+}
+
+.profile-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    padding: 0 0.9rem;
+    border-radius: 999px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.profile-pill-yes {
+    background: rgba(22, 163, 74, 0.12);
+    border: 1px solid rgba(22, 163, 74, 0.35);
+    color: var(--color-success);
+}
+
+.profile-pill-no {
+    background: rgba(220, 38, 38, 0.08);
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    color: var(--color-danger);
+}
+
+.profile-mod {
+    margin-top: 1.8rem;
+    padding-top: 1.6rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.profile-mod-title {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.profile-mod-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    align-items: center;
+}
+
+.profile-note {
+    margin-top: 0.8rem;
+    color: var(--text-light);
+    font-size: 1.2rem;
+}
+
+.profile-posts-title {
+    margin: 0 0 1.2rem;
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--text-primary);
+}
+
+.profile-empty {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.profile-posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.profile-post {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    padding: 1.4rem 1.6rem;
+}
+
+.profile-post-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+}
+
+.profile-post-body {
+    color: var(--text-secondary);
+    font-size: 1.55rem;
+    line-height: 1.5;
+    margin-bottom: 1.1rem;
+    word-break: break-word;
+}
+
+.profile-post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+    color: var(--text-light);
+    font-size: 1.3rem;
+}
+
+.profile-post-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.7rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.profile-post-actions form {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
