@@ -22,6 +22,10 @@ You can view the live link here: [Club Veles](https://members-only-production-95
 - Sticky footer across all pages
 - Custom 404 page
 
+---
+
+- Added user profiles and admin panel pages for fun. Not part of the project.
+
 ## Tech Stack
 
 ### Backend
