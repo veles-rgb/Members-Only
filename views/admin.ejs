@@ -12,151 +12,158 @@
 
 <body>
     <%- include("partials/header") %>
+        <div class="site-content">
+            <main class="admin-page">
+                <% if (currentUser && currentUser.is_admin) { %>
 
-        <main class="admin-page">
-            <% if (currentUser && currentUser.is_admin) { %>
-
-                <div class="admin-card">
-                    <div class="admin-head">
-                        <h1 class="admin-title">Admin Panel</h1>
-                        <p class="admin-subtitle">Manage users (search, sort, roles, deletion).</p>
-                    </div>
-
-                    <form class="admin-controls" method="GET" action="/admin">
-                        <div class="admin-controls-row">
-                            <div class="admin-field">
-                                <label for="q">Search</label>
-                                <input id="q" name="q" type="text" value="<%= q || '' %>"
-                                    placeholder="username or name">
-                            </div>
-
-                            <div class="admin-field">
-                                <label for="sort">Sort</label>
-                                <select id="sort" name="sort">
-                                    <option value="created_at" <%=sort==='created_at' ? 'selected' : '' %>>Created
-                                    </option>
-                                    <option value="username" <%=sort==='username' ? 'selected' : '' %>>Username</option>
-                                    <option value="name" <%=sort==='name' ? 'selected' : '' %>>Name</option>
-                                    <option value="is_member" <%=sort==='is_member' ? 'selected' : '' %>>Member</option>
-                                    <option value="is_admin" <%=sort==='is_admin' ? 'selected' : '' %>>Admin</option>
-                                </select>
-                            </div>
-
-                            <div class="admin-field">
-                                <label for="dir">Direction</label>
-                                <select id="dir" name="dir">
-                                    <option value="desc" <%=dir==='desc' ? 'selected' : '' %>>Desc</option>
-                                    <option value="asc" <%=dir==='asc' ? 'selected' : '' %>>Asc</option>
-                                </select>
-                            </div>
-
-                            <div class="admin-field admin-field-actions">
-                                <label class="admin-hidden-label">Actions</label>
-                                <button class="admin-btn admin-btn-primary" type="submit">Apply</button>
-                                <a class="admin-btn admin-btn-secondary" href="/admin">Reset</a>
-                            </div>
-                        </div>
-                    </form>
-
-                    <div class="admin-table-wrap">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Name</th>
-                                    <th>Member</th>
-                                    <th>Admin</th>
-                                    <th>Created</th>
-                                    <th class="admin-col-actions">Actions</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <% if (!users || users.length===0) { %>
-                                    <tr>
-                                        <td colspan="6" class="admin-empty">No users found.</td>
-                                    </tr>
-                                    <% } else { %>
-
-                                        <% users.forEach(user=> { %>
-                                            <tr class="admin-row">
-                                                <td class="admin-mono">
-                                                    <a href="/users/<%= user.id %>">
-                                                        <%= user.username %>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <%= user.name %>
-                                                </td>
-
-                                                <td>
-                                                    <span
-                                                        class="admin-pill <%= user.is_member ? 'admin-pill-yes' : 'admin-pill-no' %>">
-                                                        <%= user.is_member ? 'Yes' : 'No' %>
-                                                    </span>
-                                                </td>
-
-                                                <td>
-                                                    <span
-                                                        class="admin-pill <%= user.is_admin ? 'admin-pill-yes' : 'admin-pill-no' %>">
-                                                        <%= user.is_admin ? 'Yes' : 'No' %>
-                                                    </span>
-                                                </td>
-
-                                                <td class="admin-muted">
-                                                    <%= user.created_at %>
-                                                </td>
-
-                                                <td class="admin-actions-cell">
-                                                    <div class="admin-actions">
-
-                                                        <form method="POST"
-                                                            action="/admin/users/<%= user.id %>/toggle-member">
-                                                            <button class="admin-btn admin-btn-secondary" type="submit">
-                                                                Toggle Member
-                                                            </button>
-                                                        </form>
-
-                                                        <form method="POST"
-                                                            action="/admin/users/<%= user.id %>/toggle-admin">
-                                                            <button class="admin-btn admin-btn-secondary" type="submit">
-                                                                Toggle Admin
-                                                            </button>
-                                                        </form>
-
-                                                        <form method="POST" action="/admin/users/<%= user.id %>/delete"
-                                                            onsubmit="return confirm('Delete user <%= user.username %>? This will also delete their messages.');">
-                                                            <button class="admin-btn admin-btn-danger" type="submit"
-                                                                <%=(currentUser && currentUser.id===user.id)
-                                                                ? 'disabled' : '' %>>
-                                                                Delete
-                                                            </button>
-                                                        </form>
-
-                                                    </div>
-
-                                                    <% if (currentUser && currentUser.id===user.id) { %>
-                                                        <div class="admin-note">You cannot delete your own account.
-                                                        </div>
-                                                        <% } %>
-                                                </td>
-                                            </tr>
-                                            <% }) %>
-
-                                                <% } %>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-                <% } else { %>
                     <div class="admin-card">
-                        <h1 class="admin-title">Unauthorized Access</h1>
-                        <p class="admin-subtitle">You do not have permission to view this page.</p>
+                        <div class="admin-head">
+                            <h1 class="admin-title">Admin Panel</h1>
+                            <p class="admin-subtitle">Manage users (search, sort, roles, deletion).</p>
+                        </div>
+
+                        <form class="admin-controls" method="GET" action="/admin">
+                            <div class="admin-controls-row">
+                                <div class="admin-field">
+                                    <label for="q">Search</label>
+                                    <input id="q" name="q" type="text" value="<%= q || '' %>"
+                                        placeholder="username or name">
+                                </div>
+
+                                <div class="admin-field">
+                                    <label for="sort">Sort</label>
+                                    <select id="sort" name="sort">
+                                        <option value="created_at" <%=sort==='created_at' ? 'selected' : '' %>>Created
+                                        </option>
+                                        <option value="username" <%=sort==='username' ? 'selected' : '' %>>Username
+                                        </option>
+                                        <option value="name" <%=sort==='name' ? 'selected' : '' %>>Name</option>
+                                        <option value="is_member" <%=sort==='is_member' ? 'selected' : '' %>>Member
+                                        </option>
+                                        <option value="is_admin" <%=sort==='is_admin' ? 'selected' : '' %>>Admin
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="admin-field">
+                                    <label for="dir">Direction</label>
+                                    <select id="dir" name="dir">
+                                        <option value="desc" <%=dir==='desc' ? 'selected' : '' %>>Desc</option>
+                                        <option value="asc" <%=dir==='asc' ? 'selected' : '' %>>Asc</option>
+                                    </select>
+                                </div>
+
+                                <div class="admin-field admin-field-actions">
+                                    <label class="admin-hidden-label">Actions</label>
+                                    <button class="admin-btn admin-btn-primary" type="submit">Apply</button>
+                                    <a class="admin-btn admin-btn-secondary" href="/admin">Reset</a>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div class="admin-table-wrap">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Name</th>
+                                        <th>Member</th>
+                                        <th>Admin</th>
+                                        <th>Created</th>
+                                        <th class="admin-col-actions">Actions</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <% if (!users || users.length===0) { %>
+                                        <tr>
+                                            <td colspan="6" class="admin-empty">No users found.</td>
+                                        </tr>
+                                        <% } else { %>
+
+                                            <% users.forEach(user=> { %>
+                                                <tr class="admin-row">
+                                                    <td class="admin-mono">
+                                                        <a href="/users/<%= user.id %>">
+                                                            <%= user.username %>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <%= user.name %>
+                                                    </td>
+
+                                                    <td>
+                                                        <span
+                                                            class="admin-pill <%= user.is_member ? 'admin-pill-yes' : 'admin-pill-no' %>">
+                                                            <%= user.is_member ? 'Yes' : 'No' %>
+                                                        </span>
+                                                    </td>
+
+                                                    <td>
+                                                        <span
+                                                            class="admin-pill <%= user.is_admin ? 'admin-pill-yes' : 'admin-pill-no' %>">
+                                                            <%= user.is_admin ? 'Yes' : 'No' %>
+                                                        </span>
+                                                    </td>
+
+                                                    <td class="admin-muted">
+                                                        <%= user.created_at %>
+                                                    </td>
+
+                                                    <td class="admin-actions-cell">
+                                                        <div class="admin-actions">
+
+                                                            <form method="POST"
+                                                                action="/admin/users/<%= user.id %>/toggle-member">
+                                                                <button class="admin-btn admin-btn-secondary"
+                                                                    type="submit">
+                                                                    Toggle Member
+                                                                </button>
+                                                            </form>
+
+                                                            <form method="POST"
+                                                                action="/admin/users/<%= user.id %>/toggle-admin">
+                                                                <button class="admin-btn admin-btn-secondary"
+                                                                    type="submit">
+                                                                    Toggle Admin
+                                                                </button>
+                                                            </form>
+
+                                                            <form method="POST"
+                                                                action="/admin/users/<%= user.id %>/delete"
+                                                                onsubmit="return confirm('Delete user <%= user.username %>? This will also delete their messages.');">
+                                                                <button class="admin-btn admin-btn-danger" type="submit"
+                                                                    <%=(currentUser && currentUser.id===user.id)
+                                                                    ? 'disabled' : '' %>>
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+
+                                                        </div>
+
+                                                        <% if (currentUser && currentUser.id===user.id) { %>
+                                                            <div class="admin-note">You cannot delete your own account.
+                                                            </div>
+                                                            <% } %>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
-                    <% } %>
-        </main>
+
+                    <% } else { %>
+                        <div class="admin-card">
+                            <h1 class="admin-title">Unauthorized Access</h1>
+                            <p class="admin-subtitle">You do not have permission to view this page.</p>
+                        </div>
+                        <% } %>
+            </main>
+        </div>
 
         <%- include("partials/footer") %>
 </body>
