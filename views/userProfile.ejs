@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/styles/normalize.css">
+    <link rel="stylesheet" href="/styles/skeleton.css">
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body>
+    <%- include("partials/header") %>
+
+        <main class="profile-page">
+            <div class="profile-card">
+                <div class="profile-head">
+                    <h1 class="profile-title">
+                        <%= profileUser.name %>
+                    </h1>
+                    <p class="profile-subtitle">@<%= profileUser.username %>
+                    </p>
+
+                    <div class="profile-meta">
+                        <div class="profile-meta-item">
+                            <span class="profile-meta-label">Created</span>
+                            <span class="profile-meta-value">
+                                <%= profileUser.created_at %>
+                            </span>
+                        </div>
+
+                        <div class="profile-meta-item">
+                            <span class="profile-meta-label">Member</span>
+                            <span
+                                class="profile-pill <%= profileUser.is_member ? 'profile-pill-yes' : 'profile-pill-no' %>">
+                                <%= profileUser.is_member ? 'Yes' : 'No' %>
+                            </span>
+                        </div>
+
+                        <div class="profile-meta-item">
+                            <span class="profile-meta-label">Admin</span>
+                            <span
+                                class="profile-pill <%= profileUser.is_admin ? 'profile-pill-yes' : 'profile-pill-no' %>">
+                                <%= profileUser.is_admin ? 'Yes' : 'No' %>
+                            </span>
+                        </div>
+                    </div>
+
+                    <% if (currentUser && currentUser.is_admin) { %>
+                        <div class="profile-mod">
+                            <h2 class="profile-mod-title">Moderator Tools</h2>
+
+                            <div class="profile-mod-actions">
+                                <form method="POST" action="/admin/users/<%= profileUser.id %>/toggle-member">
+                                    <button class="admin-btn admin-btn-secondary" type="submit">Toggle Member</button>
+                                </form>
+
+                                <form method="POST" action="/admin/users/<%= profileUser.id %>/toggle-admin">
+                                    <button class="admin-btn admin-btn-secondary" type="submit">Toggle Admin</button>
+                                </form>
+
+                                <form method="POST" action="/admin/users/<%= profileUser.id %>/delete"
+                                    onsubmit="return confirm('Delete user <%= profileUser.username %>? This will also delete their messages.');">
+                                    <button class="admin-btn admin-btn-danger" type="submit" <%=(currentUser &&
+                                        currentUser.id===profileUser.id) ? 'disabled' : '' %>>
+                                        Delete User
+                                    </button>
+                                </form>
+                            </div>
+
+                            <% if (currentUser && currentUser.id===profileUser.id) { %>
+                                <div class="profile-note">You cannot delete your own account.</div>
+                                <% } %>
+                        </div>
+                        <% } %>
+                </div>
+
+                <div class="profile-posts">
+                    <h2 class="profile-posts-title">Posts</h2>
+
+                    <% if (!messages || messages.length===0) { %>
+                        <p class="profile-empty">No posts yet.</p>
+                        <% } else { %>
+
+                            <div class="profile-posts-list">
+                                <% messages.forEach(message=> { %>
+                                    <div class="profile-post">
+                                        <div class="profile-post-title">
+                                            <%= message.title %>
+                                        </div>
+                                        <div class="profile-post-body">
+                                            <%= message.message %>
+                                        </div>
+
+                                        <div class="profile-post-meta">
+                                            <span>@<%= message.username %></span>
+                                            <span>
+                                                <%= message.timestamp %>
+                                            </span>
+                                        </div>
+
+                                        <div class="profile-post-actions">
+                                            <button class="admin-btn admin-btn-primary"
+                                                onclick="window.location.href='/messages/<%= message.id %>'">
+                                                View
+                                            </button>
+
+                                            <% if (currentUser && currentUser.is_admin) { %>
+                                                <form method="POST" action="/messages/delete"
+                                                    onsubmit="return confirm('Delete this message?');">
+                                                    <input type="hidden" name="id" value="<%= message.id %>">
+                                                    <button class="admin-btn admin-btn-danger"
+                                                        type="submit">Delete</button>
+                                                </form>
+                                                <% } %>
+                                        </div>
+                                    </div>
+                                    <% }) %>
+                            </div>
+
+                            <% } %>
+                </div>
+            </div>
+        </main>
+
+        <%- include("partials/footer") %>
+</body>
+
+</html>
