@@ -29,11 +29,13 @@
                                         <div>
                                             <div>
                                                 <% if (currentUser && currentUser.is_member) { %>
-                                                    <%= message.username %>
-                                                        <% } else { %>
-                                                            <div>Details hidden, <a href="/club">join the club</a>
-                                                                too see them!</div>
-                                                            <% } %>
+                                                    <a href="/users/<%= message.user_id %>">
+                                                        @<%= message.username %>
+                                                    </a>
+                                                    <% } else { %>
+                                                        <div>Details hidden, <a href="/club">join the club</a>
+                                                            too see them!</div>
+                                                        <% } %>
                                             </div>
                                             <div>
                                                 <% if (currentUser && currentUser.is_member) { %>
