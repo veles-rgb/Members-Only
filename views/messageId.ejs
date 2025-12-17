@@ -24,7 +24,9 @@
                         <div class="detail-meta-item">
                             <% if (currentUser && currentUser.is_member) { %>
                                 <span>
-                                    <%= message.username %>
+                                    <a href="/users/<%= message.user_id %>">
+                                        @<%= message.username %>
+                                    </a>
                                 </span>
                                 <% } else { %>
                                     <span class="detail-mask">****</span>
